@@ -22,7 +22,7 @@ const transporter = nodemailer.createTransport({
 
 shared12={}
 
-const flowOpcionCuatro =
+const flowCorreo =
 addKeyword(['4', 'Contacto','representante'])
 .addAnswer([
     '📚 Gracias por tu interés. \n\nNuestro equipo está disponible para atender tus consultas y necesidades:',
@@ -152,7 +152,7 @@ addKeyword(['4', 'Contacto','representante'])
                             <p><strong>Numero:</strong>${userData.number}</p>
                             <p><strong>Email:</strong>${userData.email}</p>
                             
-                            <p class="footer">Servicio ofrecido por<br>Wabo Technologies</p>
+                            <p class="footer">Servicio ofrecido por<br>IusBotics</p>
                         </div>
                     </body>
                     </html>
@@ -222,7 +222,7 @@ addKeyword(['4', 'Contacto','representante'])
                                 <p>En breve, uno de nuestros representantes se comunicará con usted para discutir los siguientes pasos y proporcionarle información adicional sobre el proceso. Estamos aquí para responder a todas sus preguntas y brindarle la asistencia necesaria.</p>
                                 
                                 <p>Le agradecemos nuevamente por elegirnos como su firma legal de confianza. Valoramos su solicitud y estamos comprometidos en brindarle un servicio de alta calidad.</p>
-                                <p class="footer">Atentamente El Abogado.ar </p>
+                                <p class="footer">Atentamente IusBotics </p>
                                 
                             </div>
                         </body>
@@ -260,23 +260,15 @@ addKeyword(['4', 'Contacto','representante'])
 
 
 const flowPrincipal = addKeyword(EVENTS.WELCOME)
-    .addAnswer(['🙌 Hola bienvenido *¡Soy Pasante-Bot 2.0!* 🤖',
-                'Estoy aquí para mostrarte mis capacidades como asistente legal.'],
+    .addAnswer(['🙌 Hola bienvenido *¡Soy Pasante-Bot!* 🤖',
+                'Estoy aquí para mostrarte mis capacidades como asistente legal. Recuerda que la presente información es sólo de carácter informativo y no son costos ni servicios reales de algún despacho. '],
                {delay: 1000}) 
 
-    .addAnswer(["Recuerda que puedes concluir la charla mandando *CERRAR*.",
-                "O bien, si estás interesado en adquirirme puedes escribir *CONTRATAR* para que te contacte con nuestro personal. "
-            ],   {delay: 3000}) 
-              
-            .addAnswer(
-                [
-                    "Como Pasante-Bot 2.0 tengo las funciones de mi versión anterior; pero además cuento con una Inteligencia Artificial Integrada, además puedo contestar preguntas frecuentes de tus productos y servicios de forma más natural.",
-                    "Te recomiendo probar la opción 3, después volver con la palabra *INICIO* para que vayas al apartado de *servicios* y conozcas al final conozcas la sección de preguntas."], {delay: 2000})
-
-            .addAnswer(["*1* Conoce el ejemplo de portafolio de *SERVICIOS*, que puedes modificar de acuerdo a tus precios y detalles.",
-                        "*2* Explora la opción *CONTACTAR* al cliente, que de forma rápida y sencilla te agregará a un grupo de WhatsApp donde podrás platicar con el cliente.",
-                        "*3* *PASANTEBOT* La inteligencia artificial encargada de dar una breve asesoría y enlazarte con el cliente",
-                        "*4* Dejanos tus datos para comunicarnos via correo"],
+                 .addAnswer(["Gracias por contactar al despacho IusBotics, te presento un menú con nuestras opciones:",
+                        "*1* 📜Conoce el ejemplo de portafolio de *SERVICIOS*, que puedes modificar de acuerdo a tus precios y detalles.",
+                        "*2* 📲Explora la opción *CONTACTAR* al cliente, que de forma rápida y sencilla te agregará a un grupo de WhatsApp donde podrás platicar con el cliente.",
+                        "*3* 🤖*PASANTEBOT* La inteligencia artificial encargada de dar una breve asesoría y enlazarte con el cliente",
+                        "*4* 📧Dejanos tus datos para comunicarnos via correo"],
                 { delay: 4000, capture: true },
                 async(ctx, { fallBack, gotoFlow }) => {
                     const userResponse = ctx.body.toLowerCase();
@@ -287,7 +279,7 @@ const flowPrincipal = addKeyword(EVENTS.WELCOME)
                         return fallBack('Lo sentimos, no tenemos esa opción, pero puedes seleccionar entre los servicios que ofrecemos.');
                     }
                 },
-                [flowcerrar, flowcontratar, flowcontactar, flowservicios,flowpasantebot,flowOpcionCuatro]
+                [flowcerrar, flowcontratar, flowcontactar, flowservicios,flowpasantebot,flowCorreo]
                 
             );
             
